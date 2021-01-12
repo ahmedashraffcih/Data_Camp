@@ -292,9 +292,46 @@ Code profiling for memory usage
 ==============================
 sys.getsizeof(object)
 
+
 #Code Profiling : memory
 ==============================
 
 - package used : memory_profiler
 = %load_ext memory_profiler
 = %mprun -f function function(x,y) > magic command
+
+
+The collections module
+==============================
+- built in module
+- specialized container datatypes
+*Notable : 
+   - Namedtuple : tuble subclass with name fields
+   - deque : list-like with fast append and pops
+   - Counter : dict for counting hashable objects
+   - Orderdict : dict that retains order of entries
+   - Defaultdict : dict that calls factory function to supply missing values
+# from collections import counter
+counter(x) rather than loop through dict and count 
+
+The Itertools module
+==============================
+- built in module
+- Functional tools for creating and using iterators
+*Notable : 
+   - infinte iterators : count, cycle , repeat
+   - finite iterators : accumlate, chain, zip_longest, ..etc
+   - Combining generators : product, premutations, combinations
+# from Itertools import combinations
+combinations(x)
+
+
+set theory 
+==============================
+- Branch of mathematics applied to collection of objects
+- built in set has methods: 
+   - intersection()
+   - difference()
+   - symmetric_difference()
+   - union()
+- using in operator
