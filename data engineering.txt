@@ -1,0 +1,300 @@
+DATA ENGINEER DELIVER :
+- the correct data 
+- in the right form 
+- to the right people
+- as efficiently as possilbe
+
+
+the five vs
+
+- volume 
+- velocity
+- value 
+- veracity
+- variety
+
+
+data science workflow
+- data collection and storage
+- data prepration
+- exploration and visualization
+- experimentation and prediction
+
+data engineer tools 
+
+databases
+mysql - postgresql
+Processing
+spark - hive
+Scheduling- make sure these jobs run in timely fashion and the right order
+apache airflow 
+
+cloud
+---------
+Storage
+- aws s3
+- azure blob storage
+-google cloud storage
+
+computation
+---------
+- aws ec2
+- azure vm
+- google compute engine
+
+Databases
+---------
+- aws rds
+- azure sql database
+ - google cloud sql
+_________________________________
+Databases
+----------
+
+SQL
+- Tables
+- DB Scheme
+- Relational Db
+= mysql - postgreSQL
+
+NoSQL
+- NON-RELATIONAL
+- Structured or unstructured
+- key-value stores
+- document db
+= redis - mongo
+
+
+
+
+------------
+Hadoop 
+- collection of open source packages for big data
+- map redudce is part of it 
+- hdfs is part of it 
+
+
+PySpark
+-  pythom interface for the spark framework
+- use dataframe abstraction
+
+
+Hive
+
+- intially use hadoop map reduce 
+- is built from the need to use structured queries for parellel processing 
+
+
+
+DAGs
+- Directed acyclic graph	
+- set of noed
+- directed edges
+- no cycles
+
+tools for dag
+-----
+linx cron
+spotify luigi
+apache airflow - created at airbnb
+
+
+
+--------------------------
+ JSON : Javascript Object Notation
+
+
+Applications Databases
+- Transactions
+- inserts or changes
+- oltp
+- row-oriented
+
+Analytical Databases
+- Olap
+- Column Orinted
+
+
+JDBC helps spark to connect relational databases
+
+
+MPP Databases
+- Massively parallel processing database
+= Amazon redshift
+= Azure SQL data warehouse
+- Google Bigquery
+
+
+
+
+
+
+---------------------------
+Introduction to CSVs
+============================
+
+
+Loading csv with pandas
+++++++++++++++++
+
+x = pd.read_csv("filename.csv")
+
+x = pd.read_csv("filename.csv",sep="\t")
+sep for delimiter
+x.head(4) = check first 4 rows
+
+-> limiting coulmns : usecols
+# accept a list of cols name or cols numbers, or function to filter
+
+-> skip rows: skiprows
+-> limiting rows: nrows
+#skiprows:  accept a list of cols name or cols numbers, or function to filter
+# set Header=none so pandas knows there are no coulmn names
+x = pd.read_csv("filename.csv",nrows=1000)
+
+Assign Column names
+++++++++++++++++
+col_names= list(tax_data_first1000)
+tax_data= pd.read_csv("filename",nrows=500,skiprows=1000,header=none,names=col_names)
+
+
+specifying data types : dtype
+++++++++++++++++
+
+x = pd.read_csv("filename.csv",dtype={"zipcode":str")
+
+
+customizing missing values : na_values
+++++++++++++++++
+x = pd.read_csv("filename.csv",na_values={"zipcode":0")
+
+
+#set error_bad_lines=false to skip unparsable records
+#set warn_bad_lines=true to see messages when records are skipped
+
+---------------------------------------------------------------------
+
+Introduction to spreadsheets
+============================
+
+x = pd.read_excel("filename.xlsx")
+-> limiting rows: nrows
+-> skip rows: skiprows
+-> limiting coulmns : usecols
+#sheet_name
+#sheets are 0-indexed
+to load all the sheets-> sheet_name = none, so we need to create data frame to hold all sheets then iterate through it
+
+
+specifying data types : dtype
+++++++++++++++++
+
+x = pd.read_excel("filename.xlsx",dtype={"zipcode":str")
+
+
+Setting Custom True/False Values
+++++++++++++++++
+true_values=["Yes"]
+false_values=["NO"]
+
+
+#datetime loaded as objects
+parse_date -> accept list of cols names or numbers or sublist or dict 
+use pd.to_datetime() if parse_date won't work
+to_datetime(dataframe,col,format)
+
+
+%Y = 4 digit
+%m = 0 padded
+%d = 0 padded
+%H = 24-HOUR CLOCK
+%M = 0 padded
+%S = 0 padded
+
+
+03292016  21:25:12
+format_str= "%m%d%Y %H:%M:%S"
+
+
+
+---------------------------------------------------------------------
+
+Introduction to databases
+============================
+1- SQL alchemy (library) -> from sqlalchemy import create_engine
+
+#handle db connections : create_engine()
+#SQLite URL Format : sqlite:///filename.db
+
+x = pd.read_sql(query,engine)
+# quere could be : sql statement or table name 
+
+---------------------------------------------------------------------
+
+Introduction to JSON
+============================
+x = pd.read_json(string path,orient="split")
+// cant read dicts
+
+
+import requests
+# requests.get(url_string) to get data from url
+
+#params : dict of parameters
+#headers : dict,used to provide user authentication
+- headers={"Authorization": "Beareer {}" .format(api_key)}
+
+# response.json() returns a dict so we need to load it into DF
+
+
+
+
+Working with nested JSONs
+++++++++++++++++
+pandas.io.json   submodule has tools to read & write json
+
+- json_normalize() => takes dict or list of dicts, returns df, choose diff seperator (sep)
+
+from pandas.io.json import json_normalize
+
+
+++++++++++++++++
+Combining multiple datasets
+++++++++++++++++
+- Append -> df.append(df2)
+
+- Merge() like join in sql
+
+# x.merge(y,left_on="x",right_on="y"
+
+
+========================================================
+========================================================
+========================================================
+Writing Efficient Python Code
+- Efficient is fast run time and small memory usage
+- to time our code :%timeit\
+- set no. of run -r and no. of loops -n
+- save output -o
+
+
+
+#Code Profiling 
+==============================
+- detailed stats on frequency and duration of function calls
+- line by line analysis
+- package used : line_profiler
+= %load_ext line_profiler
+= %lprun -f function function(x,y) > magic command
+
+
+Code profiling for memory usage
+==============================
+sys.getsizeof(object)
+
+#Code Profiling : memory
+==============================
+
+- package used : memory_profiler
+= %load_ext memory_profiler
+= %mprun -f function function(x,y) > magic command
