@@ -335,3 +335,14 @@ set theory
    - symmetric_difference()
    - union()
 - using in operator
+
+
+Intro to pandas DataFrame iteration
+==============================
+- Iterating with .iterrows()
+for i,row in x_df.iterrows() -> skipping the inxed step
+
+itertuples() 
+
+.apply() method : takes function and applies it to a DF
+   - Must specify axis : 0 Columns and 1 for rows
