@@ -346,3 +346,78 @@ itertuples()
 
 .apply() method : takes function and applies it to a DF
    - Must specify axis : 0 Columns and 1 for rows
+
+
+   ---------------
+   BATCH SCRIPTING
+
+   - pwd : print working directory ' tells you where you are '
+
+   - ls : listing contents of your current directory
+      - -R see everything underneath a directory
+      - -F that prints a / after the name of every directory and * after the name of every runnable program
+   
+   ***The shell decides if a path is absolute or relative by looking at its first character: 
+   *** If it begins with /, it is absolute. If it does not begin with /, it is relative.
+
+   - cp:copy
+   - mv: move
+   - rm: remove
+   - rmdir: remove directory only when its empty
+   - mkdir directory_name: to create a new (empty) directory.
+   - cat: view file content 
+   - less: one page is displayed at a time; you can press spacebar to page down or type q to quit.
+   -- :n next file     :p   previeos file    :q to quit
+
+   - head: prints the first few lines of a file     -n 3 first 3 rows
+   - tail:prints the last few lines of a file     -n +3 display all but first 3 lines 
+      head and tail let you select rows from a text file
+
+   -cut: select coulmns 
+      -b: select only these bytes
+      -c: select only these characters
+      -d: use delm instead of tab for field delimiter
+      -f: select only these fields also print any line that contains no delimiter, unless -s option is specified 
+      -s: only delimted 
+
+      head and tail select rows, cut selects columns, and grep selects lines according to what they contain.
+
+   - grep: takes a piece of text followed by one or more filenames and prints all of the lines in those files that contain that text
+      -c: print a count of matching lines rather than the lines themselves
+      -h: do not print the names of files when searching multiple files
+      -i: ignore case (e.g., treat "Regression" and "regression" as matches)
+      -l: print the names of files that contain matches, not the matches
+      -n: print line numbers for matching lines
+      -v: invert the match, i.e., only show lines that don't match
+
+   - paste: combine data files instead of cutting them up.
+   -  > redirection for data
+   -  | : pipe -> instead of copying data to another file we use it
+   - (tap): auto complete in shell
+   - wc: (short for "word count") prints the number of characters, words, and lines in a file.   (c,w,l)
+   - man: command (short for "manual")
+   - history: shows u what u have done    
+   - Wild cards 
+      - *
+      - ? matches a single character, so 201?.txt will match 2017.txt or 2018.txt, but not 2017-01.txt
+      - [...] matches any one of the characters inside the square brackets, so 201[78].txt matches 2017.txt or 2018.txt, but not 2016.txt.
+      - {...} matches any of the comma-separated patterns inside the curly brackets, so {*.txt, *.csv} matches any file whose name 
+              ends with .txt or .csv, but not files whose names end with .pdf.
+   
+   - sort
+      -n , -r : sort numerically and reverse the order of its output,
+      -b : ignore leading blanks
+      -f : if it fold case
+   - uniq: remove duplicate lines -c to count
+
+   *shell stores information in variables, called environment variables
+   - shell variable : training=seasonal/summer.csv
+   - echo:  find a variable's value 
+
+   - for loop structure : for filetype in gif jpg png; do echo $filetype; done
+         - for …variable… in …list… ; do …body… ; done
+   -nano text editor
+      Ctrl + K: delete a line.
+      Ctrl + U: un-delete a line.
+      Ctrl + O: save the file ('O' stands for 'output'). You will also need to press Enter to confirm the filename!
+      Ctrl + X: exit the editor.
